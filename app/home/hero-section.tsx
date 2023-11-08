@@ -1,13 +1,13 @@
 import Image from "next/image";
 
-export default function HeroSection() {
+function HeroSection() {
   return (
-    <section className="grid grid-cols-1 sm:grid-cols-12">
+    <section className="mt-6 grid grid-cols-1 sm:grid-cols-12">
       <div className="col-span-7 w-full place-self-center justify-self-start text-center sm:text-left">
         <h1 className="text-2xl capitalize sm:text-4xl md:text-6xl md:leading-normal">
           tech news for busy peeps
         </h1>
-        <button className="mt-3 block w-fit rounded border-2 bg-indigo-500 px-4 py-2 text-white shadow-[0.25rem_0.25rem_0px_0px_rgba(0,0,0,1)] sm:px-6 sm:py-4">
+        <button className="mt-3 w-fit rounded border-2 bg-indigo-500 px-4 py-2 text-white shadow-[0.25rem_0.25rem_0px_0px_rgba(0,0,0,1)] sm:px-6 sm:py-4">
           browse articles
         </button>
       </div>
@@ -23,3 +23,5 @@ export default function HeroSection() {
     </section>
   );
 }
+
+export default HeroSection;

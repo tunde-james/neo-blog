@@ -1,10 +1,12 @@
-export default function Header() {
+function Header() {
   return (
-    <header className="border-b border-black flex justify-between">
-      <div className="text-4xl capitalize px-4 py-2">neo</div>
-      <button className="bg-black text-white capitalize px-2 py-4">
+    <header className="border-black flex justify-between border-b">
+      <div className="px-4 py-2 text-4xl capitalize">neo</div>
+      <button className="bg-black px-2 py-4 capitalize text-white">
         sign in
       </button>
     </header>
   );
 }
+
+export default Header;
