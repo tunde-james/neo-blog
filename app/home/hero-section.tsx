@@ -8,9 +8,21 @@ function HeroSection() {
         <h1 className="text-2xl capitalize sm:text-4xl md:text-6xl md:leading-normal">
           tech news for busy peeps
         </h1>
+        <h2>Stay up-to-date with the latest tech news and announcement.</h2>
+        <ul>
+          <li>
+            <span className="mr-2">✔️</span>Industry News
+          </li>
+          <li>
+            <span className="mr-2">✔️</span>Product Launches
+          </li>
+          <li>
+            <span className="mr-2">✔️</span>Innovation Spotlights
+          </li>
+        </ul>
         <Link
           href="/blog/all"
-          className="mt-3 w-fit rounded border-2 bg-indigo-500 px-4 py-2 capitalize text-white shadow-[0.25rem_0.25rem_0px_0px_rgba(0,0,0,1)] sm:px-6 sm:py-4"
+          className="mt-3 block w-fit rounded border-2 bg-indigo-500 px-4 py-2 capitalize text-white shadow-[0.25rem_0.25rem_0px_0px_rgba(0,0,0,1)] sm:px-6 sm:py-4"
         >
           browse articles
         </Link>

@@ -1,6 +1,7 @@
 "use client";
 
 import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 
 export function Button() {
   const { data: session, status } = useSession();
@@ -11,24 +12,28 @@ export function Button() {
 
   if (session) {
     return (
-      <button
-        className="cursor-pointer bg-black px-4 py-2 capitalize text-white"
-        onClick={(e) => {
-          e.preventDefault();
-          signOut();
-        }}
-      >
-        sign out
-      </button>
+      <div className="flex items-stretch">
+        <Link href="/blog/new" className="mr-6 self-center hover:underline">
+          ✍️ Write a Post
+        </Link>
+        <button
+          className="cursor-pointer bg-black p-4 text-white"
+          onClick={(e) => {
+            e.preventDefault();
+            signOut();
+          }}
+        >
+          Sign Out
+        </button>
+      </div>
     );
   }
-
   return (
-    <button
-      className="cursor-pointer bg-black px-4 py-2 capitalize text-white"
+    <div
       onClick={() => signIn()}
+      className="cursor-pointer bg-black p-4 text-white"
     >
-      sign in
-    </button>
+      Sign In
+    </div>
   );
 }
