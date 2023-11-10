@@ -16,6 +16,12 @@
   }
 }
 
+html,
+body,
+#__next /* for Next.js */ {
+  height: 100%;
+}
+
 @layer components {
   .container-sm {
     @apply mx-auto max-w-md sm:max-w-xs;
