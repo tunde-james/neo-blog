@@ -20,4 +20,8 @@
   .container-sm {
     @apply mx-auto max-w-md sm:max-w-xs;
   }
+
+  .neo-shadow {
+    @apply shadow-[0.25rem_0.25rem_0px_0px_rgba(0,0,0,1)] hover:shadow-[0.5rem_0.5rem_0px_0px_rgba(0,0,0,1)];
+  }
 }

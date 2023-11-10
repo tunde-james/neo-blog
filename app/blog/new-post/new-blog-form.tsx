@@ -3,6 +3,8 @@
 import { FormEvent, useState } from "react";
 import { useSession } from "next-auth/react";
 import { createPost } from "@/app/actions/publish-post";
+import { UploadButton } from "@/app/utils/uploadthing";
+import "@uploadthing/react/styles.css";
 
 function NewBlogForm() {
   const { data: session, status } = useSession();
@@ -10,6 +12,7 @@ function NewBlogForm() {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const [thumbnail, setThumbnail] = useState<string | null>(null);
 
   if (!session && status !== "loading")
     return <p>You must be signed in to post</p>;
@@ -17,12 +20,18 @@ function NewBlogForm() {
   async function handleSubmitBlogPost(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const userId = session?.user?.id;
+    const user = session?.user as any;
+    const userId = user?.id;
 
     if (!userId) return;
 
     try {
-      const post = await createPost({ title, content, authorId: userId });
+      const post = await createPost({
+        title,
+        content,
+        authorId: userId,
+        imgUrl: thumbnail,
+      });
       setSubmitted(true);
     } catch (error) {
       console.log(error);
@@ -51,7 +60,25 @@ function NewBlogForm() {
           onChange={(event) => setContent(event.target.value)}
           className="mt-2 flex-1 text-4xl focus-visible:outline-none"
         />
-        <button className="mt-6 w-fit rounded border-2 bg-indigo-400 px-4 py-2 text-white shadow-[0.25rem_0.25rem_0px_0px_rgba(0,0,0,1)] sm:px-6 sm:py-4">
+        <div className="self-start">
+          <label htmlFor="" className="mb-3 capitalize text-slate-600">
+            add thubnail image(optional)
+          </label>
+          <UploadButton
+            endpoint="imageUploader"
+            onClientUploadComplete={(res) => {
+              // Do something with the response
+              console.log("Files: ", res);
+              if (!res) return;
+              setThumbnail(res[0].url);
+            }}
+            onUploadError={(error: Error) => {
+              // Do something with the error.
+              alert(`ERROR! ${error.message}`);
+            }}
+          />
+        </div>
+        <button className="mt-6 rounded border-2 bg-indigo-400 px-4 py-2 text-white shadow-[0.25rem_0.25rem_0px_0px_rgba(0,0,0,1)] sm:px-6 sm:py-4">
           create
         </button>
       </form>

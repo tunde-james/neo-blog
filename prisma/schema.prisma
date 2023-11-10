@@ -67,6 +67,8 @@ model Post {
   author    User    @relation(fields: [authorId], references: [id])
   authorId  Int
   categories Category[]
+  imgUrl    String?
+  createdAt DateTime @default(now())
 }
 
 model Category {
